@@ -1,0 +1,10 @@
+syntax = "proto3";
+package mapofmap.mapofmap;
+
+option go_package = "mapofmap/x/mapofmap/types";
+
+message Batch {
+  
+  string proof = 1; 
+  uint64 batchnumber = 2; 
+}

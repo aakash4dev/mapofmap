@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+package mapofmap.mapofmap;
+
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "mapofmap/mapofmap/params.proto";
+import "mapofmap/mapofmap/executionlayers.proto";
+
+option go_package = "mapofmap/x/mapofmap/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  
+  // Parameters queries the parameters of the module.
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/mapofmap/mapofmap/params";
+  
+  }
+  
+  // Queries a list of Executionlayers items.
+  rpc Executionlayers    (QueryGetExecutionlayersRequest) returns (QueryGetExecutionlayersResponse) {
+    option (google.api.http).get = "/mapofmap/mapofmap/executionlayers/{index}";
+  
+  }
+  rpc ExecutionlayersAll (QueryAllExecutionlayersRequest) returns (QueryAllExecutionlayersResponse) {
+    option (google.api.http).get = "/mapofmap/mapofmap/executionlayers";
+  
+  }
+  
+  // Queries a list of Chainid items.
+  rpc Chainid (QueryChainidRequest) returns (QueryChainidResponse) {
+    option (google.api.http).get = "/mapofmap/mapofmap/chainid/{batchnumber}";
+  
+  }
+  
+  // Queries a list of Getbatch items.
+  rpc Getbatch (QueryGetbatchRequest) returns (QueryGetbatchResponse) {
+    option (google.api.http).get = "/mapofmap/mapofmap/getbatch/{chainid}/{batchnumber}";
+  
+  }
+}
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetExecutionlayersRequest {
+  string index = 1;
+}
+
+message QueryGetExecutionlayersResponse {
+  Executionlayers executionlayers = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllExecutionlayersRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllExecutionlayersResponse {
+  repeated Executionlayers                        executionlayers = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination      = 2;
+}
+
+message QueryChainidRequest {
+  string batchnumber = 1;
+}
+
+message QueryChainidResponse {
+  string proof = 1;
+}
+
+message QueryGetbatchRequest {
+  string chainid     = 1;
+  string batchnumber = 2;
+}
+
+message QueryGetbatchResponse {
+  string proof = 1;
+}
+

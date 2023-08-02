@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package mapofmap.mapofmap;
+
+import "gogoproto/gogo.proto";
+import "mapofmap/mapofmap/params.proto";
+import "mapofmap/mapofmap/executionlayers.proto";
+
+option go_package = "mapofmap/x/mapofmap/types";
+
+// GenesisState defines the mapofmap module's genesis state.
+message GenesisState {
+           Params          params              = 1 [(gogoproto.nullable) = false];
+  repeated Executionlayers executionlayersList = 2 [(gogoproto.nullable) = false];
+}
+

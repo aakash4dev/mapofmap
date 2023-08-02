@@ -1,0 +1,13 @@
+syntax = "proto3";
+package mapofmap.mapofmap;
+
+option go_package = "mapofmap/x/mapofmap/types";
+
+message Executionlayers {
+  string index = 1; 
+  string name = 2; 
+  string info = 3; 
+  string chainid = 4; 
+  string creator = 5;
+}
+

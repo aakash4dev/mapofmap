@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package mapofmap.mapofmap;
+
+import "mapofmap/mapofmap/executionlayers.proto";
+
+option go_package = "mapofmap/x/mapofmap/types";
+
+// Msg defines the Msg service.
+service Msg {
+  rpc CreateExecutionlayers (MsgCreateExecutionlayers) returns (MsgCreateExecutionlayersResponse);
+  rpc UpdateExecutionlayers (MsgUpdateExecutionlayers) returns (MsgUpdateExecutionlayersResponse);
+  rpc DeleteExecutionlayers (MsgDeleteExecutionlayers) returns (MsgDeleteExecutionlayersResponse);
+  rpc Addbatch              (MsgAddbatch             ) returns (MsgAddbatchResponse             );
+}
+message MsgCreateExecutionlayers {
+  string creator = 1;
+  string index   = 2;
+  string name    = 3;
+  string info    = 4;
+  string chainid = 5;
+}
+
+message MsgCreateExecutionlayersResponse {}
+
+message MsgUpdateExecutionlayers {
+  string creator = 1;
+  string index   = 2;
+  string name    = 3;
+  string info    = 4;
+  string chainid = 5;
+}
+
+message MsgUpdateExecutionlayersResponse {}
+
+message MsgDeleteExecutionlayers {
+  string creator = 1;
+  string index   = 2;
+}
+
+message MsgDeleteExecutionlayersResponse {}
+
+message MsgAddbatch {
+  string creator = 1;
+  string chainid = 2;
+  string batch   = 3;
+}
+
+message MsgAddbatchResponse {}
+
